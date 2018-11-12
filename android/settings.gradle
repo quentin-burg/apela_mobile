@@ -1,0 +1,3 @@
+rootProject.name = 'apela_mobile'
+
+include ':app'
