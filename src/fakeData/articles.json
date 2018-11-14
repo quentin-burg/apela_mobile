@@ -1,0 +1,56 @@
+[
+  {
+    "name": "biere",
+    "description": "25cl 8deg.",
+    "price": "3",
+    "image": "hibou.jpg"
+  },
+  {
+    "name": "chips",
+    "description": "250g",
+    "price": "1.5",
+    "image": "hibou.jpg"
+  },
+  {
+    "name": "saucisson",
+    "description": "125g",
+    "price": "3",
+    "image": "hibou.jpg"
+  },
+  {
+    "name": "biere",
+    "description": "25cl 8deg.",
+    "price": "3",
+    "image": "hibou.jpg"
+  },
+  {
+    "name": "chips",
+    "description": "250g",
+    "price": "1.5",
+    "image": "hibou.jpg"
+  },
+  {
+    "name": "saucisson",
+    "description": "125g",
+    "price": "3",
+    "image": "hibou.jpg"
+  },
+  {
+    "name": "biere",
+    "description": "25cl 8deg.",
+    "price": "3",
+    "image": "hibou.jpg"
+  },
+  {
+    "name": "chips",
+    "description": "250g",
+    "price": "1.5",
+    "image": "hibou.jpg"
+  },
+  {
+    "name": "saucisson",
+    "description": "125g",
+    "price": "3",
+    "image": "hibou.jpg"
+  }
+]
