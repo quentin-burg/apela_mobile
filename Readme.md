@@ -7,3 +7,9 @@
 - créer un composant `Menu` en bas qui contiendra deux boutons `ButtonMenu` : un qui redirigera vers le catalogue, un autre vers le numéro
 - créer le composant `CallApela` qui contiendra le numéro pour appeler
 - gérer la navigation entre les vues (swipe + menu button)
+
+
+# Etape si bug
+
+rm -rf node_modules && npm install
+npm start -- --reset-cache
