@@ -15,7 +15,15 @@ const Container = styled.View`
   flex: 1;
   align-items: center;
   justify-content: center;
-  background-color: #d1603d;
+  background-color: #f6f5ae;
+`;
+
+const LegalView = styled.View`
+  margin-top: 50px;
+`;
+
+const LegalText = styled.Text`
+  text-align: center;
 `;
 
 class CallApela extends React.Component {
@@ -34,7 +42,7 @@ class CallApela extends React.Component {
         {this.state.checked ? (
           <Icon.Button
             name="phone"
-            backgroundColor="#3b5998"
+            backgroundColor="#D1603D"
             onPress={() => call(args).catch(console.error)}
           >
             <Text style={{ fontFamily: "Arial", fontSize: 15 }}>
@@ -44,6 +52,7 @@ class CallApela extends React.Component {
         ) : (
           <CheckBox
             title="Je confirme avoir plus de 18 ans."
+            uncheckedColor="#D1603D"
             checked={this.state.checked}
             onPress={() =>
               this.setState({
@@ -52,6 +61,13 @@ class CallApela extends React.Component {
             }
           />
         )}
+        <LegalView>
+          <LegalText>
+            {
+              "L'abus d'alcool est dangereux pour la santé, consommez avec modération."
+            }
+          </LegalText>
+        </LegalView>
       </Container>
     );
   }
