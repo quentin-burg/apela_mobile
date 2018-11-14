@@ -13,9 +13,8 @@ import articles from 'fakeData/articles.json';
 // );
 
 const ArticlesList = () => {
-  console.log(articles);
   return (
-    <ScrollView style={{ backgroundColor: '#D1603D', width: 100 + '%' }}>
+    <ScrollView style={{ width: 100 + '%' }}>
       {articles.map(a => (
         <Article article={a} key={a.id} />
       ))}

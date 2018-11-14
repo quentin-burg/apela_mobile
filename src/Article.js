@@ -5,13 +5,24 @@ import { Text, Image } from 'react-native';
 import styled from 'styled-components/native';
 
 const Container = styled.View`
-  backgroundcolor: #d1603d;
+  background-color: #f6f5ae;
+  flex: 1;
+  flex-direction: row;
+  borderBottomColor: lightgrey;
+  borderBottomWidth: 1;
+  borderStyle: solid;
 `;
 
 const ImageContainer = styled.Image`
   width: 50;
   height: 50;
-  margin: 5;
+  margin-vertical: 5;
+  margin-right: 30;
+`;
+
+const TextContainer = styled.View`
+  flex: 1;
+  flex-direction: column;
 `;
 
 // Functionnal component : on utilise cela lorsqu'on a pas besoin du lifecycle du component
@@ -20,9 +31,11 @@ const Article = ({ article }) => {
   return (
     <Container>
       <ImageContainer source={require('assets/hibou.jpg')} />
-      <Text>{article.name}</Text>
-      <Text>{article.description}</Text>
-      <Text>Prix : {article.price}€</Text>
+      <TextContainer>
+        <Text style={{ color: 'black' }}>{article.name}</Text>
+        <Text style={{ color: 'black' }}>{article.description}</Text>
+        <Text style={{ color: 'black' }}>Prix : {article.price}€</Text>
+      </TextContainer>
     </Container>
   );
 };
