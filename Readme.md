@@ -1,3 +1,5 @@
+# NPM INSTALL APRES AVOIR CLONE
+
 # Todo :
 
 - modifier le logo de l'application
@@ -7,3 +9,10 @@
 - créer un composant `Menu` en bas qui contiendra deux boutons `ButtonMenu` : un qui redirigera vers le catalogue, un autre vers le numéro
 - créer le composant `CallApela` qui contiendra le numéro pour appeler
 - gérer la navigation entre les vues (swipe + menu button)
+
+# Commands :
+
+- to build application => react-native run-android
+- to run on emulator or device => yarn start
+
+Note : pour importer styled-components pour react-native, `import styled from 'styled-components/native'`
