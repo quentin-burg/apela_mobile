@@ -1,36 +1,60 @@
 // Vue où l'on affiche le numéro de téléphone
-import React from 'react';
-import { View, Text } from 'react-native';
-import styled from 'styled-components/native';
+import React from "react";
+import { View, Text } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
+import styled from "styled-components/native";
+import { CheckBox, Button } from "react-native-elements";
+import call from "react-native-phone-call";
 
-// Mettre un component. 
-// utilisé le state local du component (isChecked) qui est a false. 
-// Dans le render, utilisé ? pour tester isChecked, si false, on affiche la chqBox, si c'est à true on affiche le numéro
-  // quand on clique sur la checkboxe, ca met a jour le state local ou handle check, cela va rerender le composant donc va se mettre à jour
-  // 
+const args = {
+  number: "0808080808", // String value with the number to call
+  prompt: false // Optional boolean property. Determines if the user should be prompt prior to the call
+};
 
 const Container = styled.View`
   flex: 1;
   align-items: center;
-  justify-content: center; 
+  justify-content: center;
   background-color: #d1603d;
 `;
 
-const NumeroStyle = styled.Text`
-  visible: hidden;
-`;
+class CallApela extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      checked: false
+    };
+  }
 
-handleckec () [
-  this.setstate({
-    isChecked: true,
-  })
-]
-
-const CallApela = () => (
-  <Container>
-    <NumeroStyle>CALL</NumeroStyle>
-    {this.state.isChecked ? <check onClick={() => this.handleckec()}></check> : <numero></numero>}
-  </Container>
-);
+  render() {
+    // Si state est coché, on affiche le numéro et on ne reaffiche pas la checkbox
+    // Si state n'est pas coché, on affiche la checkBox
+    return (
+      <Container>
+        {this.state.checked ? (
+          <Icon.Button
+            name="phone"
+            backgroundColor="#3b5998"
+            onPress={() => call(args).catch(console.error)}
+          >
+            <Text style={{ fontFamily: "Arial", fontSize: 15 }}>
+              Appel nous !
+            </Text>
+          </Icon.Button>
+        ) : (
+          <CheckBox
+            title="Je confirme avoir plus de 18 ans."
+            checked={this.state.checked}
+            onPress={() =>
+              this.setState({
+                checked: true
+              })
+            }
+          />
+        )}
+      </Container>
+    );
+  }
+}
 
 export default CallApela;
