@@ -17,7 +17,7 @@ const ArticlesList = () => {
   return (
     <ScrollView style={{ backgroundColor: '#D1603D', width: 100 + '%' }}>
       {articles.map(a => (
-        <Article article={a} key={a.name} />
+        <Article article={a} key={a.id} />
       ))}
     </ScrollView>
   );

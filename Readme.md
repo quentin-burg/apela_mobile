@@ -1,3 +1,5 @@
+# NPM INSTALL APRES AVOIR CLONE
+
 # Todo :
 
 - modifier le logo de l'application
@@ -8,8 +10,14 @@
 - créer le composant `CallApela` qui contiendra le numéro pour appeler
 - gérer la navigation entre les vues (swipe + menu button)
 
-
 # Etape si bug
 
 rm -rf node_modules && npm install
 npm start -- --reset-cache
+
+# Commands :
+
+- to build application => react-native run-android
+- to run on emulator or device => yarn start
+
+Note : pour importer styled-components pour react-native, `import styled from 'styled-components/native'`
