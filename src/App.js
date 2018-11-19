@@ -2,15 +2,42 @@ import { createBottomTabNavigator } from 'react-navigation';
 import React from 'react';
 import Home from 'Home';
 import CallApela from 'CallApela';
+import CartList from 'CartList';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { GlobalProvider } from 'store/GlobalProvider';
 
+console.disableYellowBox = true;
+
+
+// To access to the store (improve that)
+const CartListProvider = () => (
+  <GlobalProvider>
+    <CartList />
+  </GlobalProvider>
+);
+
+const HomeProvider = () => (
+  <GlobalProvider>
+    <Home />
+  </GlobalProvider>
+);
+
+// TODO : add here GlobalProvider if we want to access to store in all tabs
 export default createBottomTabNavigator(
   {
     Catalogue: {
-      screen: Home,
+      screen: HomeProvider,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
-          <Icon name="shopping-cart" size={28} color={tintColor} />
+          <Icon name="th-large" size={28} color={tintColor} />
+        ),
+      },
+    },
+    Panier: {
+      screen: CartListProvider,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => (
+          <Icon name="cart-plus" type="font-awesome" size={28} color={tintColor} />
         ),
       },
     },

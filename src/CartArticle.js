@@ -1,11 +1,11 @@
 // représente un article
 
 import React, { Component } from 'react';
-import { Text, Image, TextInput } from 'react-native';
+import { Text, Image } from 'react-native';
 import styled from 'styled-components/native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { Button } from 'react-native-elements';
 import { GlobalConsumer } from 'store/GlobalProvider';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 
 const Container = styled.View`
   backgroundColor: #f6f5ae;
@@ -30,12 +30,6 @@ const TextContainer = styled.View`
   flex-direction: column;
 `;
 
-const IconContainer = styled.View`
-  flex: 1;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-`;
 
 const Quantity = styled.Text`
   borderWidth: 1;
@@ -47,21 +41,13 @@ const Quantity = styled.Text`
 `;
 
 // Functionnal component : on utilise cela lorsqu'on a pas besoin du lifecycle du component
-class Article extends React.Component {
+class CartArticle extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      quantity: 0,
+      quantity: this.props.quantity,
     };
-    this.add = this.add.bind(this);
     this.remove = this.remove.bind(this);
-  }
-
-  add() {
-    console.log('add');
-    this.setState({
-      quantity: this.state.quantity + 1,
-    })
   }
 
   remove() {
@@ -87,12 +73,8 @@ class Article extends React.Component {
               <Text style={{ color: 'black' }}>{article.description}</Text>
               <Text style={{ color: 'black' }}>Prix : {article.price}€</Text>
             </TextContainer>
-            <IconContainer>
-              <Icon name='plus-square' onPress={this.add} type='font-awesome' color='black' size={20} />
-              <Icon name='minus-square' onPress={this.remove} type='font-awesome' color='black' size={20} />
-            </IconContainer>
-            { this.state.quantity ? <Quantity>{this.state.quantity}</Quantity> : null }
-            <Button title='Ajouter au panier' onPress={() => addToCart(article.id, this.state.quantity)} fontSize={10} backgroundColor='black' />
+            <Icon name='minus-square' onPress={this.remove} type='font-awesome' color='black' size={20} />
+            <Quantity>{this.state.quantity}</Quantity>
           </Container>
         )
       }
@@ -102,4 +84,4 @@ class Article extends React.Component {
   }
 };
 
-export default Article;
+export default CartArticle;

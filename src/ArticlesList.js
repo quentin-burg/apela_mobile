@@ -2,24 +2,18 @@
 
 import React from 'react';
 import { View, ScrollView } from 'react-native';
-// import { GlobalContext } from 'store/GlobalProvider';
+import { GlobalConsumer } from 'store/GlobalProvider';
 import Article from 'Article';
-import articles from 'fakeData/articles.json';
+import { Button } from 'react-native-elements'
 
-// const ArticlesList = () => (
-//   <GlobalContext.Consumer>
-//     {value => value.articles.map(a => <Article article={a} />)}
-//   </GlobalContext.Consumer>
-// );
+// import articles from 'fakeData/articles.json';
 
-const ArticlesList = () => {
-  return (
-    <ScrollView style={{ width: 100 + '%' }}>
-      {articles.map(a => (
-        <Article article={a} key={a.id} />
-      ))}
-    </ScrollView>
-  );
-};
+const ArticlesList = () => (
+  <GlobalConsumer>
+    {({articles}) => {
+      console.log(articles);
+      return articles.map(a => <Article article={a} key={a.id} />)}}
+  </GlobalConsumer>
+);
 
 export default ArticlesList;
