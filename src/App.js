@@ -1,8 +1,13 @@
-import { createBottomTabNavigator } from 'react-navigation';
+import React from 'react';
 import Home from 'Home';
-import CallApela from 'CallApela';
+import { GlobalProvider } from 'store/GlobalProvider';
 
-export default createBottomTabNavigator({
-  Catalogue: Home,
-  Appeler: CallApela,
-});
+console.disableYellowBox = true;
+
+const App = () => (
+  <GlobalProvider>
+    <Home />
+  </GlobalProvider>
+);
+
+export default App;

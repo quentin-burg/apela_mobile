@@ -1,52 +1,49 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
-import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import { createBottomTabNavigator } from 'react-navigation';
+import React from 'react';
 import ArticlesList from 'ArticlesList';
-import GlobalProvider from 'store/GlobalProvider';
+import CallApela from 'CallApela';
+import CartList from 'CartList';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { GlobalProvider } from 'store/GlobalProvider';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
-
-type Props = {};
-export default class Home extends Component<Props> {
-  render() {
-    return (
-      <GlobalProvider>
-        <View style={styles.container}>
-          <Text>Articles</Text>
-          <ArticlesList />
-        </View>
-      </GlobalProvider>
-    );
+export default createBottomTabNavigator(
+  {
+    Catalogue: {
+      screen: ArticlesList,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => (
+          <Icon name="th-large" size={28} color={tintColor} />
+        ),
+      },
+    },
+    Panier: {
+      screen: CartList,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => (
+          <Icon
+            name="cart-plus"
+            type="font-awesome"
+            size={28}
+            color={tintColor}
+          />
+        ),
+      },
+    },
+    Appeler: {
+      screen: CallApela,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => (
+          <Icon name="phone" size={28} color={tintColor} />
+        ),
+      },
+    },
+  },
+  {
+    tabBarOptions: {
+      labelStyle: { fontSize: 15, color: '#d1603d', fontWeight: 'bold' },
+      style: { backgroundColor: '#f6f5ae' },
+      activeTintColor: '#e91e63',
+      // activeBackgroundColor: '#e91e63',
+    },
   }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+);
