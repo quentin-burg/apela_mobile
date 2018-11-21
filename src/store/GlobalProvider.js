@@ -5,6 +5,8 @@ import React, { createContext } from 'react';
 import PropTypes from 'prop-types';
 import articles from 'fakeData/articles.json';
 
+import { fetchProducts } from 'api';
+
 const GlobalContext = createContext();
 
 export class GlobalProvider extends React.Component {
@@ -19,9 +21,12 @@ export class GlobalProvider extends React.Component {
     this.removeArt = this.removeArt.bind(this);
   }
 
-  // componentDidMount() {
-  // appelle api pour nourrir le state avec les articles
-  // }
+  componentDidMount() {
+    fetchProducts().then(results => {
+      console.log(results);
+      this.setState({ articles: results.products });
+    });
+  }
 
   // TODO : do function to add, remove, update into the state /!\ immutable function when you update the state
   // Quand on ajoute pour la premiere fois un article il est dans la liste une iteration apres ce qu'il devrait

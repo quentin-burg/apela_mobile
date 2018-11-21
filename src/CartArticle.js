@@ -6,7 +6,6 @@ import styled from 'styled-components/native';
 import { GlobalConsumer } from 'store/GlobalProvider';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-
 const Container = styled.View`
   backgroundColor: #f6f5ae;
   flex: 1;
@@ -29,7 +28,6 @@ const TextContainer = styled.View`
   flex: 1;
   flex-direction: column;
 `;
-
 
 const Quantity = styled.Text`
   borderWidth: 1;
@@ -55,14 +53,12 @@ class CartArticle extends React.Component {
     if (this.state.quantity > 0) {
       this.setState({
         quantity: this.state.quantity - 1,
-      })
+      });
     }
   }
 
   render() {
-    // const imagePath = `assets/${article.image}`;
     const { article } = this.props;
-    console.log(article);
     return (
       <Container>
         <ImageContainer source={require('assets/hibou.jpg')} />
@@ -72,15 +68,20 @@ class CartArticle extends React.Component {
           <Text style={{ color: 'black' }}>Prix : {article.price}€</Text>
         </TextContainer>
         <GlobalConsumer>
-          { ( { removeArt }) =>
-            <Icon name='minus-square' onPress={() => removeArt(article.id)} type='font-awesome' color='black' size={20} />
-           }
+          {({ removeArt }) => (
+            <Icon
+              name="minus-square"
+              onPress={() => removeArt(article.id)}
+              type="font-awesome"
+              color="black"
+              size={20}
+            />
+          )}
         </GlobalConsumer>
         <Quantity>{this.state.quantity}</Quantity>
       </Container>
     );
-
   }
-};
+}
 
 export default CartArticle;

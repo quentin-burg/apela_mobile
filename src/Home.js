@@ -6,8 +6,6 @@ import CartList from 'CartList';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { GlobalProvider } from 'store/GlobalProvider';
 
-
-// TODO : add here GlobalProvider if we want to access to store in all tabs
 export default createBottomTabNavigator(
   {
     Catalogue: {
@@ -22,7 +20,12 @@ export default createBottomTabNavigator(
       screen: CartList,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
-          <Icon name="cart-plus" type="font-awesome" size={28} color={tintColor} />
+          <Icon
+            name="cart-plus"
+            type="font-awesome"
+            size={28}
+            color={tintColor}
+          />
         ),
       },
     },

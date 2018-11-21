@@ -51,7 +51,7 @@ class Article extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      quantity: 0,
+      quantity: props.article.Quantity,
     };
     this.add = this.add.bind(this);
     this.remove = this.remove.bind(this);
@@ -76,6 +76,8 @@ class Article extends React.Component {
   render() {
     // const imagePath = `assets/${article.image}`;
     const { article } = this.props;
+    const imagePath = article.ImageURL;
+    console.log('imag', imagePath);
     return (
       <GlobalConsumer>
       {
@@ -83,9 +85,9 @@ class Article extends React.Component {
           <Container>
             <ImageContainer source={require('assets/hibou.jpg')} />
             <TextContainer>
-              <Text style={{ color: 'black' }}>{article.name}</Text>
-              <Text style={{ color: 'black' }}>{article.description}</Text>
-              <Text style={{ color: 'black' }}>Prix : {article.price}€</Text>
+              <Text style={{ color: 'black' }}>{article.Name}</Text>
+              <Text style={{ color: 'black' }}>{article.Description}</Text>
+              <Text style={{ color: 'black' }}>Prix : {article.Price}€</Text>
             </TextContainer>
             <IconContainer>
               <Icon name='plus-square' onPress={this.add} type='font-awesome' color='black' size={20} />
@@ -97,6 +99,8 @@ class Article extends React.Component {
         )
       }
       </GlobalConsumer>
+
+
     );
 
   }
