@@ -79,7 +79,7 @@ class Article extends React.Component {
     return (
       <GlobalConsumer>
       {
-        ({ addToCart }) => (
+        ({ addToCart, removeArt }) => (
           <Container>
             <ImageContainer source={require('assets/hibou.jpg')} />
             <TextContainer>
@@ -92,7 +92,7 @@ class Article extends React.Component {
               <Icon name='minus-square' onPress={this.remove} type='font-awesome' color='black' size={20} />
             </IconContainer>
             { this.state.quantity ? <Quantity>{this.state.quantity}</Quantity> : null }
-            <Button title='Ajouter au panier' onPress={() => addToCart(article.id, this.state.quantity)} fontSize={10} backgroundColor='black' />
+            <Button title='Ajouter au panier' onPress={() => addToCart(article, this.state.quantity)} fontSize={10} backgroundColor='black' />
           </Container>
         )
       }

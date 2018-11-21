@@ -1,7 +1,7 @@
 // représente un article
 
 import React, { Component } from 'react';
-import { Text, Image } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import styled from 'styled-components/native';
 import { GlobalConsumer } from 'store/GlobalProvider';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -62,23 +62,22 @@ class CartArticle extends React.Component {
   render() {
     // const imagePath = `assets/${article.image}`;
     const { article } = this.props;
+    console.log(article);
     return (
-      <GlobalConsumer>
-      {
-        ({ addToCart }) => (
-          <Container>
-            <ImageContainer source={require('assets/hibou.jpg')} />
-            <TextContainer>
-              <Text style={{ color: 'black' }}>{article.name}</Text>
-              <Text style={{ color: 'black' }}>{article.description}</Text>
-              <Text style={{ color: 'black' }}>Prix : {article.price}€</Text>
-            </TextContainer>
-            <Icon name='minus-square' onPress={this.remove} type='font-awesome' color='black' size={20} />
-            <Quantity>{this.state.quantity}</Quantity>
-          </Container>
-        )
-      }
-      </GlobalConsumer>
+      <Container>
+        <ImageContainer source={require('assets/hibou.jpg')} />
+        <TextContainer>
+          <Text style={{ color: 'black' }}>{article.name}</Text>
+          <Text style={{ color: 'black' }}>{article.description}</Text>
+          <Text style={{ color: 'black' }}>Prix : {article.price}€</Text>
+        </TextContainer>
+        <GlobalConsumer>
+          { ( { removeArt }) =>
+            <Icon name='minus-square' onPress={() => removeArt(article.id)} type='font-awesome' color='black' size={20} />
+           }
+        </GlobalConsumer>
+        <Quantity>{this.state.quantity}</Quantity>
+      </Container>
     );
 
   }

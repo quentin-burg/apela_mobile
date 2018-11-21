@@ -46,7 +46,7 @@ class CallApela extends React.Component {
             onPress={() => call(args).catch(console.error)}
           >
             <Text style={{ fontFamily: "Arial", fontSize: 15 }}>
-              Appel nous !
+              Appelle nous !
             </Text>
           </Icon.Button>
         ) : (
