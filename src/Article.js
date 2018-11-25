@@ -51,50 +51,58 @@ class Article extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      quantity: props.article.Quantity,
+      quantity: 0,
+      isAdd: false,
     };
-    this.add = this.add.bind(this);
-    this.remove = this.remove.bind(this);
+    // this.add = this.add.bind(this);
+    // this.remove = this.remove.bind(this);
+    this.handleAddToCart = this.handleAddToCart.bind(this);
   }
 
-  add() {
-    console.log('add');
-    this.setState({
-      quantity: this.state.quantity + 1,
-    })
+  // add() {
+  //   console.log('add');
+  //   this.setState({
+  //     quantity: this.state.quantity + 1,
+  //   })
+  // }
+
+  // remove() {
+  //   console.log('remove');
+  //   if (this.state.quantity > 0) {
+  //     this.setState({
+  //       quantity: this.state.quantity - 1,
+  //     })
+  //   }
+  // }
+
+  handleAddToCart(addToCart, article) {
+    addToCart(article, true);
+    this.setState({ isAdd: true});
   }
 
-  remove() {
-    console.log('remove');
-    if (this.state.quantity > 0) {
-      this.setState({
-        quantity: this.state.quantity - 1,
-      })
-    }
-  }
-
+  // Check this to use materail design : https://callstack.github.io/react-native-paper/index.html
   render() {
     // const imagePath = `assets/${article.image}`;
     const { article } = this.props;
     const imagePath = article.ImageURL;
-    console.log('imag', imagePath);
     return (
       <GlobalConsumer>
       {
-        ({ addToCart, removeArt }) => (
+        ({ updateQuantity, removeArt, getQuantityByArticleId }) => (
           <Container>
-            <ImageContainer source={require('assets/hibou.jpg')} />
+            <ImageContainer source={{uri : imagePath}} style={{width: 50, height: 50}}/>
             <TextContainer>
               <Text style={{ color: 'black' }}>{article.Name}</Text>
-              <Text style={{ color: 'black' }}>{article.Description}</Text>
-              <Text style={{ color: 'black' }}>Prix : {article.Price}€</Text>
+              <Text style={{ color: 'black', fontWeight: 'bold' }}>{article.Price}€</Text>
             </TextContainer>
+            <Quantity>{getQuantityByArticleId(article.ID) || 0}</Quantity>
+            {getQuantityByArticleId(article.ID) !== 0 ?
             <IconContainer>
-              <Icon name='plus-square' onPress={this.add} type='font-awesome' color='black' size={20} />
-              <Icon name='minus-square' onPress={this.remove} type='font-awesome' color='black' size={20} />
-            </IconContainer>
-            { this.state.quantity ? <Quantity>{this.state.quantity}</Quantity> : null }
-            <Button title='Ajouter au panier' onPress={() => addToCart(article, this.state.quantity)} fontSize={10} backgroundColor='black' />
+              <Icon name='plus-square' onPress={() => updateQuantity(article, true)} type='font-awesome' color='black' size={20} />
+              <Icon name='minus-square' onPress={() => updateQuantity(article, false)} type='font-awesome' color='black' size={20} />
+            </IconContainer> :
+            <Button icon={{name: 'cart-arrow-down', type:'font-awesome'}} onPress={() => this.handleAddToCart(updateQuantity, article)} buttonStyle={{paddingRight: 5}}/>
+          }
           </Container>
         )
       }
@@ -107,3 +115,16 @@ class Article extends React.Component {
 };
 
 export default Article;
+
+// <Icon name='cart-arrow-down' type='font-awesome' onPress={() => addToCart(article, this.state.quantity)} size={30} color='white' />
+//               <Icon name='plus-square' onPress={this.add} type='font-awesome' color='white' size={20} />
+//               <Icon name='minus-square' onPress={this.remove} type='font-awesome' color='white' size={20} />
+
+//<Button title='' rightIcon={{name: 'cart-arrow-down', type: 'font-awesome', size: 20}} onPress={() => addToCart(article, this.state.quantity)} backgroundColor='black' />
+// <IconContainer>
+//
+//             </IconContainer>
+
+// { this.state.quantity ? <Quantity>{this.state.quantity}</Quantity> : null }
+
+// <Text style={{ color: 'black' }}>{article.Description}</Text>

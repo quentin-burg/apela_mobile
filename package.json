@@ -13,6 +13,7 @@
     "react": "16.3.1",
     "react-native": "0.55.4",
     "react-native-elements": "^0.19.1",
+    "react-native-paper": "^2.2.8",
     "react-native-phone-call": "^1.0.9",
     "react-native-vector-icons": "^6.0.2",
     "react-navigation": "^2.18.2",
@@ -20,8 +21,8 @@
   },
   "devDependencies": {
     "babel-jest": "23.6.0",
-    "jest": "23.6.0",
     "babel-preset-react-native": "2.1.0",
+    "jest": "23.6.0",
     "react-test-renderer": "16.6.0-alpha.8af6728"
   },
   "jest": {

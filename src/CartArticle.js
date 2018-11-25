@@ -38,50 +38,58 @@ const Quantity = styled.Text`
   backgroundColor: white;
 `;
 
+const IconContainer = styled.View`
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
 // Functionnal component : on utilise cela lorsqu'on a pas besoin du lifecycle du component
 class CartArticle extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      quantity: this.props.quantity,
+      quantity: props.article.quantity,
     };
-    this.remove = this.remove.bind(this);
-  }
-
-  remove() {
-    console.log('remove');
-    if (this.state.quantity > 0) {
-      this.setState({
-        quantity: this.state.quantity - 1,
-      });
-    }
   }
 
   render() {
     const { article } = this.props;
     return (
       <Container>
-        <ImageContainer source={require('assets/hibou.jpg')} />
+        <ImageContainer source={{uri: article.ImageURL}} />
         <TextContainer>
-          <Text style={{ color: 'black' }}>{article.name}</Text>
-          <Text style={{ color: 'black' }}>{article.description}</Text>
-          <Text style={{ color: 'black' }}>Prix : {article.price}€</Text>
+          <Text style={{ color: 'black' }}>{article.Name}</Text>
+          <Text style={{ color: 'black' }}>Prix : {article.Price}€</Text>
         </TextContainer>
         <GlobalConsumer>
-          {({ removeArt }) => (
-            <Icon
-              name="minus-square"
-              onPress={() => removeArt(article.id)}
-              type="font-awesome"
-              color="black"
-              size={20}
-            />
+          {({ removeArt, updateQuantity }) => (
+            <IconContainer>
+              <Icon
+                name="trash"
+                onPress={() => removeArt(article.ID)}
+                type="font-awesome"
+                color="black"
+                size={30}
+              />
+              <Icon
+                name="minus-square"
+                onPress={() => updateQuantity(article, false)}
+                type="font-awesome"
+                color="black"
+                size={30}
+              />
+            </IconContainer>
           )}
         </GlobalConsumer>
-        <Quantity>{this.state.quantity}</Quantity>
+        {<Quantity>{article.quantity}</Quantity>}
       </Container>
     );
   }
 }
 
 export default CartArticle;
+
+
+// <Text style={{ color: 'black' }}>{article.description}</Text>
