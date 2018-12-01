@@ -2,10 +2,10 @@
 
 /**
  * Structure de données Product:
- *  ID
- *  Description
- *  ImageURL
- *  Price
+ *  id
+ *  description
+ *  image_url
+ *  price
  *  Quantity
  */
 

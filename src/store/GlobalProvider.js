@@ -13,59 +13,74 @@ export class GlobalProvider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      articles: articles,
+      articles: [],
       // cart = [{articleId : id, quantity: 3}]
       cart: [],
     };
-    this.addToCart = this.addToCart.bind(this);
+    this.updateQuantity = this.updateQuantity.bind(this);
     this.removeArt = this.removeArt.bind(this);
   }
 
   componentDidMount() {
     fetchProducts().then(results => {
-      console.log(results);
-      this.setState({ articles: results.products });
+      this.setState({ articles: results });
     });
   }
 
   // TODO : do function to add, remove, update into the state /!\ immutable function when you update the state
   // Quand on ajoute pour la premiere fois un article il est dans la liste une iteration apres ce qu'il devrait
-  addToCart = (article, newQuantity) => {
+  updateQuantity = (article, isAdd = true) => {
     let isInCart = false;
     this.state.cart.forEach(a =>
-      a.id === article.articleId ? (isInCart = true) : null
+      a.id === article.id ? (isInCart = true) : null
     );
     if (isInCart) {
       const cartArticles = this.state.cart;
       cartArticles.map(a =>
-        a.id === article.articleId ? (a.quantity = newQuantity) : null
+        a.id === article.id
+          ? isAdd
+            ? a.cartQuantity++
+            : a.cartQuantity > 1
+            ? a.cartQuantity--
+            : cartArticles.splice(this.state.cart.indexOf(a))
+          : null
       );
       this.setState({
         cart: cartArticles,
       });
-    } else {
+    } else if (isAdd) {
       this.setState({
-        cart: [...this.state.cart, { ...article, quantity: newQuantity }],
+        cart: [...this.state.cart, { ...article, cartQuantity: 1 }],
       });
     }
   };
 
   removeArt(articleId) {
-    const temp = this.state.cart.slice(
-      this.state.cart.find(a => a.id === articleId)
-    );
+    const articleToDel = this.state.cart.find(a => a.id === articleId);
+    const temp = this.state.cart;
+    temp.splice(this.state.cart.indexOf(articleToDel), 1);
     this.setState({
       cart: temp,
     });
   }
 
+  getQuantityByArticleId = articleId => {
+    const art = this.state.cart.find(a => a.id === articleId);
+    return art && art.cartQuantity ? art.cartQuantity : 0;
+  };
+
+  removeCart = () => this.setState({ cart: [] });
+
   render() {
+    console.log('state', this.state);
     return (
       <GlobalContext.Provider
         value={{
           ...this.state,
-          addToCart: this.addToCart,
+          updateQuantity: this.updateQuantity,
           removeArt: this.removeArt,
+          getQuantityByArticleId: this.getQuantityByArticleId,
+          removeCart: this.removeCart,
           // ... fill here useful functions to manage store
         }}
       >
