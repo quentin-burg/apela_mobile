@@ -6,9 +6,14 @@ import Article from 'Article';
 import { Button, Card } from 'react-native-elements';
 import call from 'react-native-phone-call';
 
-const CartList = () => {
+const CartList = (props) => {
   // Note Louis : pour faire cette fonction tu peux utiliser reduce des Array
-  getTotalPrice = cart => 10;
+  getTotalPrice = (cart) => {
+    const reducer = (total, currentPrice) => total + currentPrice;
+
+    cart.reducer()
+  } 
+  getNumberArticles = cart => 1;
   return (
     <View>
       <ScrollView style={{ height: 90 + '%' }}>
@@ -21,6 +26,7 @@ const CartList = () => {
                   title='Panier vide ?'
                   icon={{ name: 'shopping-cart', type: 'font-awesome' }}>
                   <Button
+                    onPress={() => props.navigation.navigate('Catalogue')}
                     backgroundColor='#03A9F4'
                     buttonStyle={{ borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0 }}
                     title='Cliquer ici pour faire vos achats.' />
@@ -33,6 +39,7 @@ const CartList = () => {
                     return <CartArticle article={a} key={a.id} />;
                 })}
                 <Text>Total : {getTotalPrice(cart)} €</Text>
+                <Text>Articles : {getNumberArticles(cart)} €</Text>
               </View>
             );
           }}
@@ -50,17 +57,15 @@ const CartList = () => {
             >
               <Button
                 title="Retirer tous les articles"
+                backgroundColor='#03A9F4'
                 icon={{ name: 'trash', type: 'font-awesome' }}
                 onPress={removeCart}
               />
               <Button
                 title="Commander"
+                backgroundColor='#03A9F4'
                 icon={{ name: 'phone', type: 'font-awesome' }}
-                onPress={() =>
-                  call({ number: '0808080808', prompt: false }).catch(
-                    console.error
-                  )
-                }
+                onPress={() => props.navigation.navigate('Appeler')}
               />
             </View>
           );
