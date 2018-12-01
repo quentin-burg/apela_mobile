@@ -50,7 +50,7 @@ class CartArticle extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      quantity: props.article.quantity,
+      quantity: props.article.cartQuantity,
     };
   }
 
@@ -58,17 +58,24 @@ class CartArticle extends React.Component {
     const { article } = this.props;
     return (
       <Container>
-        <ImageContainer source={{uri: article.ImageURL}} />
+        <ImageContainer source={{ uri: article.image_url }} />
         <TextContainer>
-          <Text style={{ color: 'black' }}>{article.Name}</Text>
-          <Text style={{ color: 'black' }}>Prix : {article.Price}€</Text>
+          <Text style={{ color: 'black' }}>{article.name}</Text>
+          <Text style={{ color: 'black' }}>Prix : {article.price}€</Text>
         </TextContainer>
         <GlobalConsumer>
           {({ removeArt, updateQuantity }) => (
             <IconContainer>
               <Icon
                 name="trash"
-                onPress={() => removeArt(article.ID)}
+                onPress={() => removeArt(article.id)}
+                type="font-awesome"
+                color="black"
+                size={30}
+              />
+              <Icon
+                name="plus-square"
+                onPress={() => updateQuantity(article, true)}
                 type="font-awesome"
                 color="black"
                 size={30}
@@ -83,13 +90,10 @@ class CartArticle extends React.Component {
             </IconContainer>
           )}
         </GlobalConsumer>
-        {<Quantity>{article.quantity}</Quantity>}
+        {<Quantity>{article.cartQuantity}</Quantity>}
       </Container>
     );
   }
 }
 
 export default CartArticle;
-
-
-// <Text style={{ color: 'black' }}>{article.description}</Text>

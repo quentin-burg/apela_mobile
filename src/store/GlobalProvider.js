@@ -32,25 +32,31 @@ export class GlobalProvider extends React.Component {
   updateQuantity = (article, isAdd = true) => {
     let isInCart = false;
     this.state.cart.forEach(a =>
-      a.ID === article.ID ? (isInCart = true) : null
+      a.id === article.id ? (isInCart = true) : null
     );
     if (isInCart) {
       const cartArticles = this.state.cart;
       cartArticles.map(a =>
-        a.ID === article.ID ? (isAdd ? a.quantity++ : a.quantity--) : null
+        a.id === article.id
+          ? isAdd
+            ? a.cartQuantity++
+            : a.cartQuantity > 1
+            ? a.cartQuantity--
+            : cartArticles.splice(this.state.cart.indexOf(a))
+          : null
       );
       this.setState({
         cart: cartArticles,
       });
     } else if (isAdd) {
       this.setState({
-        cart: [...this.state.cart, { ...article, quantity: 1 }],
+        cart: [...this.state.cart, { ...article, cartQuantity: 1 }],
       });
     }
   };
 
   removeArt(articleId) {
-    const articleToDel = this.state.cart.find(a => a.ID === articleId);
+    const articleToDel = this.state.cart.find(a => a.id === articleId);
     const temp = this.state.cart;
     temp.splice(this.state.cart.indexOf(articleToDel), 1);
     this.setState({
@@ -58,10 +64,10 @@ export class GlobalProvider extends React.Component {
     });
   }
 
-  getQuantityByArticleId = (articleId) => {
-    const art = this.state.cart.find(a => a.ID === articleId);
-    return art && art.quantity ? art.quantity : 0;
-  }
+  getQuantityByArticleId = articleId => {
+    const art = this.state.cart.find(a => a.id === articleId);
+    return art && art.cartQuantity ? art.cartQuantity : 0;
+  };
 
   removeCart = () => this.setState({ cart: [] });
 

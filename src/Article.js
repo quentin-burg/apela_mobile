@@ -84,7 +84,7 @@ class Article extends React.Component {
   render() {
     // const imagePath = `assets/${article.image}`;
     const { article } = this.props;
-    const imagePath = article.ImageURL;
+    const imagePath = article.image_url;
     return (
       <GlobalConsumer>
       {
@@ -92,14 +92,14 @@ class Article extends React.Component {
           <Container>
             <ImageContainer source={{uri : imagePath}} style={{width: 50, height: 50}}/>
             <TextContainer>
-              <Text style={{ color: 'black' }}>{article.Name}</Text>
-              <Text style={{ color: 'black', fontWeight: 'bold' }}>{article.Price}€</Text>
+              <Text style={{ color: 'black' }}>{article.name}</Text>
+              <Text style={{ color: 'black', fontWeight: 'bold' }}>{article.price}€</Text>
             </TextContainer>
-            <Quantity>{getQuantityByArticleId(article.ID) || 0}</Quantity>
-            {getQuantityByArticleId(article.ID) !== 0 ?
+            <Quantity>{getQuantityByArticleId(article.id) || 0}</Quantity>
+            {getQuantityByArticleId(article.id) !== 0 ?
             <IconContainer>
-              <Icon name='plus-square' onPress={() => updateQuantity(article, true)} type='font-awesome' color='black' size={20} />
-              <Icon name='minus-square' onPress={() => updateQuantity(article, false)} type='font-awesome' color='black' size={20} />
+              <Icon name='plus-square' onPress={() => updateQuantity(article, true)} type='font-awesome' color='black' size={30} />
+              <Icon name='minus-square' onPress={() => updateQuantity(article, false)} type='font-awesome' color='black' size={30} />
             </IconContainer> :
             <Button icon={{name: 'cart-arrow-down', type:'font-awesome'}} onPress={() => this.handleAddToCart(updateQuantity, article)} buttonStyle={{paddingRight: 5}}/>
           }
@@ -127,4 +127,4 @@ export default Article;
 
 // { this.state.quantity ? <Quantity>{this.state.quantity}</Quantity> : null }
 
-// <Text style={{ color: 'black' }}>{article.Description}</Text>
+// <Text style={{ color: 'black' }}>{article.description}</Text>
