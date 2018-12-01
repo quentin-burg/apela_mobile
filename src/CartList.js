@@ -3,7 +3,7 @@ import { ScrollView, Text, View } from 'react-native';
 import { GlobalConsumer } from 'store/GlobalProvider';
 import CartArticle from 'CartArticle';
 import Article from 'Article';
-import { Button } from 'react-native-elements';
+import { Button, Card } from 'react-native-elements';
 import call from 'react-native-phone-call';
 
 const CartList = () => {
@@ -16,7 +16,15 @@ const CartList = () => {
           {({ cart }) => {
             console.log('cART', cart);
             if (cart.length === 0) {
-              return <Text>Pas d'articles dans le panier</Text>;
+              return (
+                <Card
+                  title='Panier vide ?'
+                  icon={{ name: 'shopping-cart', type: 'font-awesome' }}>
+                  <Button
+                    backgroundColor='#03A9F4'
+                    buttonStyle={{ borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0 }}
+                    title='Cliquer ici pour faire vos achats.' />
+                </Card>)
             }
             return (
               <View>
