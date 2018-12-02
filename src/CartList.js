@@ -7,13 +7,18 @@ import { Button, Card } from 'react-native-elements';
 import call from 'react-native-phone-call';
 
 const CartList = (props) => {
-  // Note Louis : pour faire cette fonction tu peux utiliser reduce des Array
+  // Utiliser reduce des Array
   getTotalPrice = (cart) => {
-    const reducer = (total, currentPrice) => total + currentPrice;
+    totalPrice = 0.0;
+    cart.forEach(function (articleInCart) {
+      totalPrice += articleInCart.price * articleInCart.cartQuantity;
+    });
+    return totalPrice;
+  }
+  getNumberArticles = (cart) => {
+    return cart.length;
+  }
 
-    cart.reducer()
-  } 
-  getNumberArticles = cart => 1;
   return (
     <View>
       <ScrollView style={{ height: 90 + '%' }}>
@@ -27,8 +32,8 @@ const CartList = (props) => {
                   icon={{ name: 'shopping-cart', type: 'font-awesome' }}>
                   <Button
                     onPress={() => props.navigation.navigate('Catalogue')}
-                    backgroundColor='#03A9F4'
-                    buttonStyle={{ borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0 }}
+                    backgroundColor='#039be5'
+                    buttonStyle={{ borderRadius: 5, marginLeft: 0, marginRight: 0, marginBottom: 0 }}
                     title='Cliquer ici pour faire vos achats.' />
                 </Card>)
             }
@@ -38,8 +43,14 @@ const CartList = (props) => {
                   if (a.cartQuantity)
                     return <CartArticle article={a} key={a.id} />;
                 })}
-                <Text>Total : {getTotalPrice(cart)} €</Text>
-                <Text>Articles : {getNumberArticles(cart)} €</Text>
+                <View
+                  style={{
+                    flex: 1,
+                    flexDirection: 'row',
+                  }}>
+                  <Text style={{ marginRight: 15, marginLeft: 5 }}>Total : {getTotalPrice(cart)} €</Text>
+                  <Text>Articles : {getNumberArticles(cart)}</Text>
+                </View>
               </View>
             );
           }}
@@ -57,14 +68,16 @@ const CartList = (props) => {
             >
               <Button
                 title="Retirer tous les articles"
-                backgroundColor='#03A9F4'
+                backgroundColor='#e53935'
                 icon={{ name: 'trash', type: 'font-awesome' }}
+                buttonStyle={{ borderRadius: 5, marginLeft: 5, marginRight: 0, marginBottom: 0 }}
                 onPress={removeCart}
               />
               <Button
                 title="Commander"
-                backgroundColor='#03A9F4'
+                backgroundColor='##43a047'
                 icon={{ name: 'phone', type: 'font-awesome' }}
+                buttonStyle={{ borderRadius: 5, marginLeft: 0, marginRight: 5, marginBottom: 0 }}
                 onPress={() => props.navigation.navigate('Appeler')}
               />
             </View>
