@@ -75,7 +75,7 @@ const CartList = (props) => {
               />
               <Button
                 title="Commander"
-                backgroundColor='##43a047'
+                backgroundColor='#43a047'
                 icon={{ name: 'phone', type: 'font-awesome' }}
                 buttonStyle={{ borderRadius: 5, marginLeft: 0, marginRight: 5, marginBottom: 0 }}
                 onPress={() => props.navigation.navigate('Appeler')}
