@@ -32,7 +32,7 @@ const CartList = (props) => {
                   icon={{ name: 'shopping-cart', type: 'font-awesome' }}>
                   <Button
                     onPress={() => props.navigation.navigate('Catalogue')}
-                    backgroundColor='#039be5'
+                    backgroundColor='#9ad1b5'
                     buttonStyle={{ borderRadius: 5, marginLeft: 0, marginRight: 0, marginBottom: 0 }}
                     title='Cliquer ici pour faire vos achats.' />
                 </Card>)
@@ -68,14 +68,14 @@ const CartList = (props) => {
             >
               <Button
                 title="Retirer tous les articles"
-                backgroundColor='#e53935'
+                backgroundColor='#D1603D'
                 icon={{ name: 'trash', type: 'font-awesome' }}
                 buttonStyle={{ borderRadius: 5, marginLeft: 5, marginRight: 0, marginBottom: 0 }}
                 onPress={removeCart}
               />
               <Button
                 title="Commander"
-                backgroundColor='#43a047'
+                backgroundColor='#fbc02d'
                 icon={{ name: 'phone', type: 'font-awesome' }}
                 buttonStyle={{ borderRadius: 5, marginLeft: 0, marginRight: 5, marginBottom: 0 }}
                 onPress={() => props.navigation.navigate('Appeler')}
