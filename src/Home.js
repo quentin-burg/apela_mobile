@@ -40,10 +40,12 @@ export default createBottomTabNavigator(
   },
   {
     tabBarOptions: {
-      labelStyle: { fontSize: 13, color: '#fafafa', fontWeight: 'bold' },
+      labelStyle: { fontSize: 13, fontWeight: 'bold' },
       style: { backgroundColor: '#212121' },
-      activeTintColor: '#ffee58',
-      // activeBackgroundColor: '#e91e63',
+      activeTintColor: '#212121',
+      inactiveTintColor: '#fafafa',
+      inactiveBackgroundColor: '#212121',
+      activeBackgroundColor:'#fafafa'
     },
   }
 );

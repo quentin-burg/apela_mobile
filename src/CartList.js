@@ -67,7 +67,7 @@ const CartList = (props) => {
               }}
             >
               <Button
-                title="Retirer tous les articles"
+                title="Vider le panier"
                 backgroundColor='#D1603D'
                 icon={{ name: 'trash', type: 'font-awesome' }}
                 buttonStyle={{ borderRadius: 5, marginLeft: 5, marginRight: 0, marginBottom: 0 }}

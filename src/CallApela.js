@@ -8,7 +8,7 @@ import call from "react-native-phone-call";
 import { Col, Row, Grid } from "react-native-easy-grid";
 
 const args = {
-  number: "0808080808", // String value with the number to call
+  number: "+33765567698", // String value with the number to call
   prompt: false // Optional boolean property. Determines if the user should be prompt prior to the call
 };
 
@@ -26,6 +26,7 @@ const LegalView = styled.View`
 
 const LegalText = styled.Text`
   text-align: center;
+  font-size: 10;
 `;
 
 const ImportantText = styled.Text`
@@ -46,26 +47,23 @@ class CallApela extends React.Component {
     // Si state n'est pas coché, on affiche la checkBox
     return (
       <Grid>
-        <Row size={65}>
+        <Row size={25}>
+          <Image
+            style={{ flex: 1, height: undefined, width: undefined, resizeMode:'contain' }}
+            source={require('./assets/logo_name.png')}
+          />
+          </Row>
+        <Row size={40}>
           <Container>
-            <Image
-              style={{ flex: 1, height: undefined, width: undefined }}
-              source={require('./assets/logo_icon.png')}
-            />
-            <LegalView>
-              <ImportantText>
-                {"Attention, seul la livraison sur Lille est disponible."}
-              </ImportantText>
-            </LegalView>
             {this.state.checked ? (
               <Icon.Button
                 name="phone"
-                color="white"
+                color="#212121"
                 backgroundColor="#fbc02d"
                 onPress={() => call(args).catch(console.error)}
               >
-                <Text style={{ fontFamily: "Arial", fontSize: 15 }}>
-                  APPELLE NOUS !
+                <Text style={{ fontFamily: "Arial", fontSize: 15, color: "#212121" }}>
+                  APPELE NOUS !
             </Text>
               </Icon.Button>
             ) : (
@@ -83,7 +81,7 @@ class CallApela extends React.Component {
             <LegalView>
               <LegalText>
                 {
-                  "L'abus d'alcool est dangereux pour la santé, consommez avec modération."
+                  "Attention, seul la livraison sur Lille est disponible.\n L'abus d'alcool est dangereux pour la santé, consommez avec modération."
                 }
               </LegalText>
             </LegalView>
@@ -92,7 +90,7 @@ class CallApela extends React.Component {
         <Row size={35}>
           <Image
             style={{ flex: 1, height: undefined, width: undefined }}
-            source={{ uri: 'https://images.pexels.com/photos/1574673/pexels-photo-1574673.jpeg' }}
+            source={require('./assets/beer.jpg')}
           />
         </Row>
       </Grid>
