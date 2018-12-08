@@ -2,13 +2,7 @@
 
 # Todo :
 
-- modifier le logo de l'application
-- modifier le nom de l'application
-- créer composant `Article` qui contient un article
-- créer composant `ArticlesList` qui contient la liste des articles. Ce sera une liste verticale scrollable
-- créer un composant `Menu` en bas qui contiendra deux boutons `ButtonMenu` : un qui redirigera vers le catalogue, un autre vers le numéro
-- créer le composant `CallApela` qui contiendra le numéro pour appeler
-- gérer la navigation entre les vues (swipe + menu button)
+- Corriger le bug qui laisse le splashscreen en background
 
 # Etape si bug
 
@@ -62,3 +56,16 @@ Note pour plus tard :
         "image": "hibou.jpg"
     }
 }
+
+### Jaune : #FBB03B
+
+
+# To make release
+
+In android folder :
+- ./gradlew clean
+- ./gradlew assembleRelease
+In root folder :
+- react-native run-android --variant=release
+
+
