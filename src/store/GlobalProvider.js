@@ -42,7 +42,7 @@ export class GlobalProvider extends React.Component {
             ? a.cartQuantity++
             : a.cartQuantity > 1
             ? a.cartQuantity--
-            : cartArticles.splice(this.state.cart.indexOf(a))
+            : cartArticles.splice(this.state.cart.indexOf(a), 1)
           : null
       );
       this.setState({
@@ -72,7 +72,6 @@ export class GlobalProvider extends React.Component {
   removeCart = () => this.setState({ cart: [] });
 
   render() {
-    console.log('state', this.state);
     return (
       <GlobalContext.Provider
         value={{
@@ -89,16 +88,6 @@ export class GlobalProvider extends React.Component {
     );
   }
 }
-
-//   render() {
-//     console.log('th', this.state)
-//     return (
-//       <GlobalContext.Provider value={Object.assign({}, {...this.state, addToCart: this.addToCart})}>
-//       {this.props.children}
-//       </GlobalContext.Provider>
-//       );
-//     }
-// }
 
 GlobalProvider.propTypes = {
   children: PropTypes.object,

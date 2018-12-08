@@ -33,6 +33,32 @@
     "description": "250g",
     "price": "1.5",
     "image": "hibou.jpg"
+  },  {
+    "id": "a23",
+    "name": "biere",
+    "description": "25cl 8deg.",
+    "price": "3",
+    "image": "hibou.jpg"
+  },
+  {
+    "id": "a50",
+    "name": "chips",
+    "description": "250g",
+    "price": "1.5",
+    "image": "hibou.jpg"
+  },  {
+    "id": "a40",
+    "name": "biere",
+    "description": "25cl 8deg.",
+    "price": "3",
+    "image": "hibou.jpg"
+  },
+  {
+    "id": "a54",
+    "name": "chips",
+    "description": "250g",
+    "price": "1.5",
+    "image": "hibou.jpg"
   },
   {
     "id": "a6",

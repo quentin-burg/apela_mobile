@@ -16,7 +16,7 @@ const Container = styled.View`
   flex: 1;
   align-items: center;
   justify-content: space-evenly;
-  background-color: #fafafa;
+  background-color: white;
 `;
 
 const LegalView = styled.View`
@@ -50,7 +50,7 @@ class CallApela extends React.Component {
         <Row size={25}>
           <Image
             style={{ flex: 1, height: undefined, width: undefined, resizeMode:'contain' }}
-            source={require('./assets/logo_name.png')}
+            source={require('assets/logo_name.png')}
           />
           </Row>
         <Row size={40}>
@@ -63,7 +63,7 @@ class CallApela extends React.Component {
                 onPress={() => call(args).catch(console.error)}
               >
                 <Text style={{ fontFamily: "Arial", fontSize: 15, color: "#212121" }}>
-                  APPELE NOUS !
+                  APPELLE NOUS !
             </Text>
               </Icon.Button>
             ) : (
@@ -81,7 +81,7 @@ class CallApela extends React.Component {
             <LegalView>
               <LegalText>
                 {
-                  "Attention, seul la livraison sur Lille est disponible.\n L'abus d'alcool est dangereux pour la santé, consommez avec modération."
+                  "Attention, seule la livraison sur Lille est disponible.\n L'abus d'alcool est dangereux pour la santé, consommez avec modération."
                 }
               </LegalText>
             </LegalView>
@@ -89,8 +89,8 @@ class CallApela extends React.Component {
         </Row>
         <Row size={35}>
           <Image
-            style={{ flex: 1, height: undefined, width: undefined }}
-            source={require('./assets/beer.jpg')}
+            style={{ flex: 1, width: 100 + '%', height: null }}
+            source={require('assets/beer.jpg')}
           />
         </Row>
       </Grid>
