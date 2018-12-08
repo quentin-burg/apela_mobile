@@ -12,6 +12,7 @@
     "prop-types": "^15.6.2",
     "react": "16.3.1",
     "react-native": "0.55.4",
+    "react-native-easy-grid": "^0.2.0",
     "react-native-elements": "^0.19.1",
     "react-native-paper": "^2.2.8",
     "react-native-phone-call": "^1.0.9",
