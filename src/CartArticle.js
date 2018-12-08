@@ -45,6 +45,18 @@ const IconContainer = styled.View`
   align-items: center;
 `;
 
+const IconCirclePlus = styled.View`
+  backgroundColor: #43a047;
+  padding: 3px 7px;
+  borderRadius: 30px;
+`;
+
+const IconCircleMinus = styled.View`
+  backgroundColor: #ff6e40;
+  padding: 3px 7px;
+  borderRadius: 30px;
+`;
+
 // Functionnal component : on utilise cela lorsqu'on a pas besoin du lifecycle du component
 class CartArticle extends React.Component {
   constructor(props) {
@@ -66,27 +78,25 @@ class CartArticle extends React.Component {
         <GlobalConsumer>
           {({ removeArt, updateQuantity }) => (
             <IconContainer>
-              <Icon
-                name="trash"
-                onPress={() => removeArt(article.id)}
-                type="font-awesome"
-                color="black"
-                size={30}
-              />
-              <Icon
-                name="plus-square"
-                onPress={() => updateQuantity(article, true)}
-                type="font-awesome"
-                color="black"
-                size={30}
-              />
-              <Icon
-                name="minus-square"
-                onPress={() => updateQuantity(article, false)}
-                type="font-awesome"
-                color="black"
-                size={30}
-              />
+              <IconCirclePlus>
+                <Icon
+                  name="plus"
+                  onPress={() => updateQuantity(article, true)}
+                  type="font-awesome"
+                  color="white"
+                  size={20}
+                />
+              </IconCirclePlus>
+              <IconCircleMinus>
+                <Icon
+                  name="minus"
+                  onPress={() => updateQuantity(article, false)}
+                  type="font-awesome"
+                  color="white"
+                  size={20}
+
+                />
+              </IconCircleMinus>
             </IconContainer>
           )}
         </GlobalConsumer>

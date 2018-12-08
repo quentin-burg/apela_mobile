@@ -12,7 +12,7 @@ export default createBottomTabNavigator(
       screen: ArticlesList,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
-          <Icon name="th-large" size={28} color={tintColor} />
+          <Icon name="book" type="font-awesome" size={20} color={tintColor} />
         ),
       },
     },
@@ -23,7 +23,7 @@ export default createBottomTabNavigator(
           <Icon
             name="cart-plus"
             type="font-awesome"
-            size={28}
+            size={20}
             color={tintColor}
           />
         ),
@@ -33,17 +33,19 @@ export default createBottomTabNavigator(
       screen: CallApela,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
-          <Icon name="phone" size={28} color={tintColor} />
+          <Icon name="phone" size={20} color={tintColor} />
         ),
       },
     },
   },
   {
     tabBarOptions: {
-      labelStyle: { fontSize: 15, color: '#d1603d', fontWeight: 'bold' },
-      style: { backgroundColor: '#f6f5ae' },
-      activeTintColor: '#e91e63',
-      // activeBackgroundColor: '#e91e63',
+      labelStyle: { fontSize: 13, fontWeight: 'bold' },
+      style: { backgroundColor: '#212121' },
+      activeTintColor: '#212121',
+      inactiveTintColor: '#fafafa',
+      inactiveBackgroundColor: '#212121',
+      activeBackgroundColor:'#fafafa'
     },
   }
 );
