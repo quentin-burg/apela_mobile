@@ -8,13 +8,13 @@ import { Button } from 'react-native-elements';
 import { GlobalConsumer } from 'store/GlobalProvider';
 
 const Container = styled.View`
-  backgroundColor: #f6f5ae;
+  backgroundColor: white;
   flex: 1;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   borderBottomColor: lightgrey;
-  borderBottomWidth: 1;
+  borderBottomWidth: 2;
   borderStyle: solid;
 `;
 
@@ -23,6 +23,7 @@ const ImageContainer = styled.Image`
   height: 50;
   margin-vertical: 5;
   margin-right: 30;
+  margin-left: 10;
 `;
 
 const TextContainer = styled.View`
@@ -32,18 +33,20 @@ const TextContainer = styled.View`
 
 const IconContainer = styled.View`
   flex: 1;
-  flex-direction: column;
-  justify-content: flex-start;
+  flex-direction: row;
+  justify-content: space-around;
   align-items: center;
 `;
 
 const Quantity = styled.Text`
-  borderWidth: 1;
-  borderStyle: solid;
-  borderColor: red;
-  paddingVertical: 3;
-  paddingHorizontal: 3;
-  backgroundColor: white;
+  paddingVertical: 5;
+  paddingHorizontal: 5;
+  backgroundColor: #FBB03B;
+  color: black;
+  border-radius: 10;
+  position: relative;
+  left: 73;
+
 `;
 
 // Functionnal component : on utilise cela lorsqu'on a pas besoin du lifecycle du component
@@ -54,26 +57,8 @@ class Article extends React.Component {
       quantity: 0,
       isAdd: false,
     };
-    // this.add = this.add.bind(this);
-    // this.remove = this.remove.bind(this);
     this.handleAddToCart = this.handleAddToCart.bind(this);
   }
-
-  // add() {
-  //   console.log('add');
-  //   this.setState({
-  //     quantity: this.state.quantity + 1,
-  //   })
-  // }
-
-  // remove() {
-  //   console.log('remove');
-  //   if (this.state.quantity > 0) {
-  //     this.setState({
-  //       quantity: this.state.quantity - 1,
-  //     })
-  //   }
-  // }
 
   handleAddToCart(addToCart, article) {
     addToCart(article, true);
@@ -82,7 +67,6 @@ class Article extends React.Component {
 
   // Check this to use materail design : https://callstack.github.io/react-native-paper/index.html
   render() {
-    // const imagePath = `assets/${article.image}`;
     const { article } = this.props;
     const imagePath = article.image_url;
     return (
@@ -95,13 +79,13 @@ class Article extends React.Component {
               <Text style={{ color: 'black' }}>{article.name}</Text>
               <Text style={{ color: 'black', fontWeight: 'bold' }}>{article.price}€</Text>
             </TextContainer>
-            <Quantity>{getQuantityByArticleId(article.id) || 0}</Quantity>
+            {getQuantityByArticleId(article.id) ? <Quantity>{getQuantityByArticleId(article.id) || 0 }</Quantity> : null}
             {getQuantityByArticleId(article.id) !== 0 ?
-            <IconContainer>
-              <Icon name='plus-square' onPress={() => updateQuantity(article, true)} type='font-awesome' color='black' size={30} />
-              <Icon name='minus-square' onPress={() => updateQuantity(article, false)} type='font-awesome' color='black' size={30} />
+              <IconContainer>
+                <Icon name='plus-square' onPress={() => updateQuantity(article, true)} type='font-awesome' color='black' size={30} />
+                <Icon name='minus-square' onPress={() => updateQuantity(article, false)} type='font-awesome' color='black' size={30} />
             </IconContainer> :
-            <Button icon={{name: 'cart-arrow-down', type:'font-awesome'}} onPress={() => this.handleAddToCart(updateQuantity, article)} buttonStyle={{paddingRight: 5}}/>
+            <Button icon={{name: 'cart-arrow-down', type:'font-awesome', color: 'black'}} onPress={() => this.handleAddToCart(updateQuantity, article)} buttonStyle={{paddingRight: 5, backgroundColor:'#FBB03B', borderRadius: 15}}/>
           }
           </Container>
         )
@@ -115,16 +99,3 @@ class Article extends React.Component {
 };
 
 export default Article;
-
-// <Icon name='cart-arrow-down' type='font-awesome' onPress={() => addToCart(article, this.state.quantity)} size={30} color='white' />
-//               <Icon name='plus-square' onPress={this.add} type='font-awesome' color='white' size={20} />
-//               <Icon name='minus-square' onPress={this.remove} type='font-awesome' color='white' size={20} />
-
-//<Button title='' rightIcon={{name: 'cart-arrow-down', type: 'font-awesome', size: 20}} onPress={() => addToCart(article, this.state.quantity)} backgroundColor='black' />
-// <IconContainer>
-//
-//             </IconContainer>
-
-// { this.state.quantity ? <Quantity>{this.state.quantity}</Quantity> : null }
-
-// <Text style={{ color: 'black' }}>{article.description}</Text>

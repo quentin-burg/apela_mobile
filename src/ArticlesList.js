@@ -10,7 +10,7 @@ class ArticlesList extends React.Component {
     return (
       <ScrollView>
         <GlobalConsumer>
-          {({ articles, getQuantityByArticleId }) => articles ? articles.map(a => <Article article={a} key={a.id} />) : <ActivityIndicator size="large" color="#0000ff" />
+          {({ articles, getQuantityByArticleId }) => articles.length ? articles.map(a => <Article article={a} key={a.id} />) : <ActivityIndicator size="large" color="#0000ff" />
           }
         </GlobalConsumer>
       </ScrollView>

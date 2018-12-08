@@ -13,7 +13,7 @@ const CartList = (props) => {
     cart.forEach(function (articleInCart) {
       totalPrice += articleInCart.price * articleInCart.cartQuantity;
     });
-    return totalPrice;
+    return totalPrice.toFixed(2);
   }
   getNumberArticles = (cart) => {
     return cart.length;
@@ -24,7 +24,6 @@ const CartList = (props) => {
       <ScrollView style={{ height: 90 + '%' }}>
         <GlobalConsumer>
           {({ cart }) => {
-            console.log('cART', cart);
             if (cart.length === 0) {
               return (
                 <Card
@@ -34,7 +33,9 @@ const CartList = (props) => {
                     onPress={() => props.navigation.navigate('Catalogue')}
                     backgroundColor='#9ad1b5'
                     buttonStyle={{ borderRadius: 5, marginLeft: 0, marginRight: 0, marginBottom: 0 }}
-                    title='Cliquer ici pour faire vos achats.' />
+                    title='Cliquer ici pour faire vos achats.'
+                    color='black'
+                    />
                 </Card>)
             }
             return (
@@ -69,14 +70,16 @@ const CartList = (props) => {
               <Button
                 title="Vider le panier"
                 backgroundColor='#D1603D'
-                icon={{ name: 'trash', type: 'font-awesome' }}
+                color='black'
+                icon={{ name: 'trash', type: 'font-awesome', color: 'black' }}
                 buttonStyle={{ borderRadius: 5, marginLeft: 5, marginRight: 0, marginBottom: 0 }}
                 onPress={removeCart}
               />
               <Button
                 title="Commander"
                 backgroundColor='#fbc02d'
-                icon={{ name: 'phone', type: 'font-awesome' }}
+                color='black'
+                icon={{ name: 'phone', type: 'font-awesome', color: 'black' }}
                 buttonStyle={{ borderRadius: 5, marginLeft: 0, marginRight: 5, marginBottom: 0 }}
                 onPress={() => props.navigation.navigate('Appeler')}
               />
