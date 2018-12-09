@@ -2,7 +2,8 @@
 
 # Todo :
 
-- Corriger le bug qui laisse le splashscreen en background
+- Corriger le bug qui laisse le splashscreen en background (+/-)
+- Fixer les warning "deprecated" durant le build
 
 # Etape si bug
 
@@ -65,6 +66,8 @@ Note pour plus tard :
 In android folder :
 - ./gradlew clean
 - ./gradlew assembleRelease
+
+# To deploy in root folder
 In root folder :
 - react-native run-android --variant=release
 

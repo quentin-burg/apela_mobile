@@ -37,7 +37,7 @@ const Quantity = styled.Text`
   color: black;
   border-radius: 10;
   position: relative;
-  right: 72;
+  right: 73;
 `;
 
 const IconContainer = styled.View`
@@ -68,21 +68,20 @@ class CartArticle extends React.Component {
         <GlobalConsumer>
           {({ removeArt, updateQuantity }) => (
             <IconContainer>
-                <Icon
-                  name="plus-square"
-                  onPress={() => updateQuantity(article, true)}
-                  type="font-awesome"
-                  color="black"
-                  size={30}
-                />
-                <Icon
-                  name="minus-square"
-                  onPress={() => updateQuantity(article, false)}
-                  type="font-awesome"
-                  color="black"
-                  size={30}
-
-                />
+              <Icon
+              name="minus-square"
+              onPress={() => updateQuantity(article, false)}
+              type="font-awesome"
+              color="black"
+              size={30}
+              />
+              <Icon
+                name="plus-square"
+                onPress={() => updateQuantity(article, true)}
+                type="font-awesome"
+                color="black"
+                size={30}
+              />
             </IconContainer>
           )}
         </GlobalConsumer>

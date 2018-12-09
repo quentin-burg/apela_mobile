@@ -82,8 +82,8 @@ class Article extends React.Component {
             {getQuantityByArticleId(article.id) ? <Quantity>{getQuantityByArticleId(article.id) || 0 }</Quantity> : null}
             {getQuantityByArticleId(article.id) !== 0 ?
               <IconContainer>
-                <Icon name='plus-square' onPress={() => updateQuantity(article, true)} type='font-awesome' color='black' size={30} />
-                <Icon name='minus-square' onPress={() => updateQuantity(article, false)} type='font-awesome' color='black' size={30} />
+              <Icon name='minus-square' onPress={() => updateQuantity(article, false)} type='font-awesome' color='black' size={30} />
+              <Icon name='plus-square' onPress={() => updateQuantity(article, true)} type='font-awesome' color='black' size={30} />
             </IconContainer> :
             <Button icon={{name: 'cart-arrow-down', type:'font-awesome', color: 'black'}} onPress={() => this.handleAddToCart(updateQuantity, article)} buttonStyle={{paddingRight: 5, backgroundColor:'#FBB03B', borderRadius: 15}}/>
           }
