@@ -39,9 +39,9 @@ export class GlobalProvider extends React.Component {
       cartArticles.map(a =>
         a.id === article.id
           ? isAdd
-            ? a.cartQuantity++
-            : a.cartQuantity > 1
-            ? a.cartQuantity--
+            ? a.quantity++
+            : a.quantity > 1
+            ? a.quantity--
             : cartArticles.splice(this.state.cart.indexOf(a), 1)
           : null
       );
@@ -50,7 +50,7 @@ export class GlobalProvider extends React.Component {
       });
     } else if (isAdd) {
       this.setState({
-        cart: [...this.state.cart, { ...article, cartQuantity: 1 }],
+        cart: [...this.state.cart, { ...article, quantity: 1 }],
       });
     }
   };
@@ -66,7 +66,7 @@ export class GlobalProvider extends React.Component {
 
   getQuantityByArticleId = articleId => {
     const art = this.state.cart.find(a => a.id === articleId);
-    return art && art.cartQuantity ? art.cartQuantity : 0;
+    return art && art.quantity ? art.quantity : 0;
   };
 
   removeCart = () => this.setState({ cart: [] });
