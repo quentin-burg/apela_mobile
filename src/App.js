@@ -1,9 +1,9 @@
 import React from 'react';
 import Home from 'Home';
+import BottomTab from 'BottomTab';
 import { GlobalProvider } from 'store/GlobalProvider';
 import ApelaModule from 'modules/ApelaModule';
 import { Platform } from 'react-native';
-
 
 console.disableYellowBox = true;
 
@@ -18,10 +18,10 @@ class App extends React.Component {
   }
   render() {
     return (
-    <GlobalProvider>
-      <Home />
-    </GlobalProvider>
-    )
+      <GlobalProvider>
+        <Home />
+      </GlobalProvider>
+    );
   }
 }
 
