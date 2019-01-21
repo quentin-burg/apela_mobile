@@ -7,9 +7,9 @@ import { Button, Card } from 'react-native-elements';
 import call from 'react-native-phone-call';
 import { sendOrder } from 'api';
 import _ from 'lodash';
+import ThankYou from './ThankYou';
 
 const CartList = props => {
-  // Utiliser reduce des Array
   getTotalPrice = cart => {
     totalPrice = 0.0;
     cart.forEach(function(articleInCart) {
@@ -17,10 +17,10 @@ const CartList = props => {
     });
     return totalPrice.toFixed(2);
   };
+
   getNumberArticles = cart => {
     return cart.length;
   };
-
   return (
     <View>
       <ScrollView style={{ height: 90 + '%' }}>
@@ -102,15 +102,16 @@ const CartList = props => {
                   marginRight: 5,
                   marginBottom: 0,
                 }}
-                onPress={() =>
-                  sendOrder({
-                    products: cart.map(p => {
-                      return { ..._.omit(p, 'id'), product_id: p.id };
-                    }),
-                    // TODO : remove that when we have authentication
-                    userId: '2233dc4d-53a9-42e0-902d-27eaa61cc6bb',
-                    // TODO : traiter l'erreur "empty cart"
-                  }).catch(console.error)
+                onPress={
+                  () => props.navigation.navigate('ThankYou')
+                  // sendOrder({
+                  //   products: cart.map(p => {
+                  //     return { ..._.omit(p, 'id'), product_id: p.id };
+                  //   }),
+                  //   // TODO : remove that when we have authentication
+                  //   userId: '2233dc4d-53a9-42e0-902d-27eaa61cc6bb',
+                  //   // TODO : traiter l'erreur "empty cart"
+                  // }).catch(console.error);
                 }
               />
             </View>

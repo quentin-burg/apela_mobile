@@ -17,10 +17,10 @@ export const fetchProducts = () =>
     .then(products => products.map(p => _.omit(p, 'quantity')));
 
 export const sendOrder = ({ products, userId }) => {
-  if (products.length === 0){
-    return Promise.reject('Empty cart')
+  if (products.length === 0) {
+    return Promise.reject('Empty cart');
   }
-  fetch('https://apela-backend.herokuapp.com/orders', {
+  return fetch('https://apela-backend.herokuapp.com/orders', {
     method: 'POST',
     body: JSON.stringify({
       products,
@@ -30,6 +30,5 @@ export const sendOrder = ({ products, userId }) => {
       street: 'rue Nationale',
       city: 'Lille',
     }),
-  })
-    .catch(console.error);
+  }).catch(console.error);
 };
